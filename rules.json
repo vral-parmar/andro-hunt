@@ -1,0 +1,81 @@
+[
+  {
+    "name": "Exported Activity Without Permission",
+    "description": "Activity is exported without a required permission, which may lead to component hijacking.",
+    "pattern": "",
+    "target_file": "AndroidManifest.xml",
+    "severity": "High",
+    "enabled": true,
+    "references": [
+      "OWASP MASVS - MSTG-PLATFORM-8",
+      "CWE-926: Improper Export of Android Component",
+      "https://developer.android.com/guide/topics/manifest/activity-element",
+      "https://cwe.mitre.org/data/definitions/926.html"
+    ]
+  },
+  {
+    "name": "Hardcoded API Keys",
+    "description": "API keys should not be hardcoded in the source code.",
+    "pattern": "(?i)(api_key|apikey|client_secret|token)[\"'=:\\s]+[\"']?[A-Za-z0-9-_]{16,}[\"']?",
+    "target_file": "smali",
+    "severity": "Medium",
+    "enabled": true,
+    "references": [
+      "OWASP MASVS - MSTG-STORAGE-2",
+      "CWE-798: Use of Hard-coded Credentials",
+      "https://cwe.mitre.org/data/definitions/798.html"
+    ]
+  },
+  {
+    "name": "Insecure WebView Usage",
+    "description": "WebView is configured insecurely with JavaScript enabled and no safe browsing checks.",
+    "pattern": "getSettings\\(\\)\\.setJavaScriptEnabled\\(true\\)",
+    "target_file": "smali",
+    "severity": "High",
+    "enabled": true,
+    "references": [
+      "OWASP MASVS - MSTG-PLATFORM-4",
+      "CWE-749: Exposed Dangerous Method or Function",
+      "https://cwe.mitre.org/data/definitions/749.html"
+    ]
+  },
+  {
+    "name": "Debuggable Application",
+    "description": "Application is set to debuggable which should be disabled in release builds.",
+    "pattern": "android:debuggable\\s*=\\s*\"true\"",
+    "target_file": "AndroidManifest.xml",
+    "severity": "High",
+    "enabled": true,
+    "references": [
+      "OWASP MASVS - MSTG-RESILIENCE-6",
+      "CWE-489: Leftover Debug Code",
+      "https://cwe.mitre.org/data/definitions/489.html"
+    ]
+  },
+  {
+    "name": "Backup Enabled",
+    "description": "Allowing backups can lead to leakage of sensitive data.",
+    "pattern": "android:allowBackup\\s*=\\s*\"true\"",
+    "target_file": "AndroidManifest.xml",
+    "severity": "Medium",
+    "enabled": true,
+    "references": [
+      "OWASP MASVS - MSTG-STORAGE-6",
+      "CWE-530: Exposure of Backup File to Unauthorized Control Sphere",
+      "https://cwe.mitre.org/data/definitions/530.html"
+    ]
+  },
+  {
+    "name": "HTTP URL Usage",
+    "description": "HTTP URLs are insecure and can expose data to MITM attacks.",
+    "pattern": "http://[\\w\\.-]+",
+    "target_file": "smali",
+    "severity": "High",
+    "enabled": true,
+    "references": [
+      "OWASP MASVS - MSTG-NETWORK-1",
+      "CWE-319: Cleartext Transmission of Sensitive Information",
+      "https://cwe.mitre.org/data/definitions/319.html"
+    ]
+  }
+]
