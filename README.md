@@ -14,4 +14,4 @@ Install aapt: `sudo apt-get install aapt`
 Install apktool: `sudo apt-get install apktool`   
 
 ### Limitation:
-Only supported on Linux environments
+Feel Sweet when work in Linux environments.
